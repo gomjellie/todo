@@ -38,7 +38,9 @@ def completed():
 def show():
     ret = ''
     for instance in db_session.query(User).order_by(User.id):
-        ret += 'name: {0} email: {1} password: {2}'.format(instance.name, instance.email, instance.password)
+        ret += 'name: {name} email: {email} password: {password}\n'.format(name=instance.name,
+                email=instance.email, 
+                password=instance.password)
     return ret
 
 @app.teardown_appcontext
