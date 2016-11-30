@@ -5,13 +5,11 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 engine = create_engine('sqlite:////tmp/test.db', convert_unicode=True,echo=True)
 metadata = MetaData()
-Session = sessionmaker(bind=engine)
+Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 db_session = Session()
 
 Base = declarative_base()
-Base.query = db_session.query_property()
 
 def init_db():
-    import models
     Base.metadata.create_all(bind=engine)
 
