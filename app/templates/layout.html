@@ -1,0 +1,27 @@
+<!doctype html>
+<title>Flaskr</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
+<div class="ui vertical masthead center aligned random segment" style="padding:10em 0em">
+<div class="ui container">      
+
+<h1>
+	Write down Todo lists here
+</h1>
+
+<div class="ui green tiny statistic">
+	<div class="label">
+		Views
+	</div>
+	<div class="value">
+	{% block body %}
+	
+	{% endblock %}
+	</div>
+</div> 
+<h4> <a href="{{url_for('show')}}">show</a></h4>
+
+
+</div>
+</div>

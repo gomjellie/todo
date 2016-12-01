@@ -3,7 +3,6 @@ from flask import render_template, flash, make_response, session,\
 from app import app
 from app.forms import RegistrationForm
 from app.database import db_session
-#from app.models import User
 from app.models import Todo
 
 @app.route('/', methods=['GET'])
@@ -17,18 +16,10 @@ def register():
     	todo_list = Todo(form.todo.data,
     	        form.check.data)
     	db_session.add(todo_list)
-#    	user = User(form.username.data, 
-#    	        form.email.data,
-#    	        form.password.data)
-#    	db_session.add(user)
     	db_session.commit()
     	flash('Thanks for registering')
-    	return redirect(url_for('login'))
+    	return redirect(url_for('register'))
     return render_template('register.html', form=form)
-
-@app.route('/login', methods=['GET'])
-def login():
-    return 'loged in'
 
 @app.route('/active', methods=['GET'])
 def active():
@@ -41,13 +32,8 @@ def completed():
 @app.route('/show', methods=['GET'])
 def show():
     ret = ''
-    for instance in db_session.query(Todo).order_by(User.id):
+    for instance in db_session.query(Todo).order_by(Todo.id):
         ret += 'todo: {todo} is_done: {is_done}'.format(todo=instance.todo, is_done=instance.check)
-#    for instance in db_session.query(User).order_by(User.id):
-#        ret += 'name: {name} email: {email} password: {password}\n'.format(name=instance.name,
-#                email=instance.email, 
-#                password=instance.password)
-#        print('looping')
     return ret
 
 @app.teardown_appcontext
