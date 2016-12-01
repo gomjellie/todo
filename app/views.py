@@ -3,7 +3,8 @@ from flask import render_template, flash, make_response, session,\
 from app import app
 from app.forms import RegistrationForm
 from app.database import db_session
-from app.models import User
+#from app.models import User
+from app.models import Todo
 
 @app.route('/', methods=['GET'])
 def index():
@@ -13,10 +14,13 @@ def index():
 def register():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-    	user = User(form.username.data, 
-    	        form.email.data,
-    	        form.password.data)
-    	db_session.add(user)
+    	todo_list = Todo(form.todo.data,
+    	        form.check.data)
+    	db_session.add(todo_list)
+#    	user = User(form.username.data, 
+#    	        form.email.data,
+#    	        form.password.data)
+#    	db_session.add(user)
     	db_session.commit()
     	flash('Thanks for registering')
     	return redirect(url_for('login'))
@@ -37,10 +41,13 @@ def completed():
 @app.route('/show', methods=['GET'])
 def show():
     ret = ''
-    for instance in db_session.query(User).order_by(User.id):
-        ret += 'name: {name} email: {email} password: {password}\n'.format(name=instance.name,
-                email=instance.email, 
-                password=instance.password)
+    for instance in db_session.query(Todo).order_by(User.id):
+        ret += 'todo: {todo} is_done: {is_done}'.format(todo=instance.todo, is_done=instance.check)
+#    for instance in db_session.query(User).order_by(User.id):
+#        ret += 'name: {name} email: {email} password: {password}\n'.format(name=instance.name,
+#                email=instance.email, 
+#                password=instance.password)
+#        print('looping')
     return ret
 
 @app.teardown_appcontext
