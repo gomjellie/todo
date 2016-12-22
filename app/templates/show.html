@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% from "_formhelpers.html" import render_field %}
+{% block body %}
+
+<form method=post action="/register">
+	{{ render_field(form.check) }} {{ render_field(form.todo) }}
+  <p><input type=submit value=Register>
+</form>
+
+<div class = "row">
+	<div class = "large-8 columns">
+		<div class="row container1">
+			{%for todo in todos %}
+				<div class="large-4 small-4 columns">
+					<ul class="todo-table">
+						{% if todo.check %}<li class="todo">{{todo.check}}</li>{% endif %}
+						{% if todo.todo %}<li class="todo">{{todo.todo}}</li>{% endif %}
+					</ul>
+			{%endfor%}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
