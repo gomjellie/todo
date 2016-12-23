@@ -21,7 +21,8 @@ def register():
     	db_session.commit()
     	flash('Thanks for registering')
     	return redirect(url_for('register'))
-    return render_template('register.html', form=form)
+    todos = db_session.query(Todo).all()
+    return render_template('show.html', form=form, todos=todos)
 
 @app.route('/active', methods=['GET', 'POST'])
 def active():

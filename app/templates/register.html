@@ -1,11 +1,15 @@
 {% extends "layout.html" %}
 {% from "_formhelpers.html" import render_field %}
 
-{% block body %}
+{% block register %}
 
 <form method=post action="/register">
 	{{ render_field(form.check) }} {{ render_field(form.todo) }}
 	{#<input type=submit value=Register>#}
 </form>
+
+{% endblock %}
+
+{% block show %}
 
 {% endblock %}
