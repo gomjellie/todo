@@ -1,0 +1,7 @@
+{% macro render_field(field) %}
+	{%for todo in field %}
+		<dt>
+			<dd>{{ field(title=field.todo, **kwargs)|safe }}</dd>
+		<dt>
+	{%endfor%}
+{% endmacro %}

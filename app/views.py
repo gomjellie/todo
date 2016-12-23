@@ -24,6 +24,17 @@ def register():
     todos = db_session.query(Todo).all()
     return render_template('show.html', form=form, todos=todos)
 
+@app.route('/flip', methods=['POST'])
+def flip():
+    todo_id = request.values.get('todo_id')
+    todo = db_session.query(Todo).filter_by(id=todo_id).first()
+    if todo.check is True:
+        todo.check = False
+    else:
+        todo.check = True
+    db_session.commit()
+    return redirect(url_for('show'))
+
 @app.route('/active', methods=['GET', 'POST'])
 def active():
     form = RegistrationForm(request.form)

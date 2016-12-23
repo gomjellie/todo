@@ -1,6 +1,26 @@
 <!doctype html>
 <title>TODOS</title>
 
+<script>
+var sendPost = function sendPost(cur_url, req_url, todo_id){
+	var xhr = new XMLHttpRequest();
+
+	var url = req_url;
+
+	xhr.open("POST", url, true);
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 304) {
+			window.location = cur_url;
+		}
+	};
+
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+	xhr.send("todo_id="+todo_id);
+}
+</script>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
 <div class="ui vertical masthead center aligned random segment" style="padding:10em 0em">

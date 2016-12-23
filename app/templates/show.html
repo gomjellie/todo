@@ -26,14 +26,17 @@
 				<ul class="todo-table">
 					<form method=post action="/register">
 						<td>
+							{#{ form.check(check=todo.check) }} {{ form.todo(todo=todo.todo,value=todo.todo) }#}
 							<input type="checkbox" id="{{todo.id}}" name="Todo" value="{{todo.check}}"
 														   {%if todo.check %}
 														   checked
-														   {% endif %}>
+														   {% endif %}
+														   onclick = "sendPost('{{ request.url }}', '{{ url_for('flip') }}', {{ todo.id }})"
+														   >
 						</td>
-						<td>
-							<label for="{{todo.id}}">{{todo.todo}}</label>
-						</td>
+							<td>
+								<label for="{{todo.id}}">{{todo.todo}}</label>
+							</td>
 					</form>
 				</ul>
 			</div>
