@@ -9,7 +9,7 @@ from app.database import init_db
 @app.route('/', methods=['GET'])
 def index():
     init_db()
-    return "Init_db"
+    return redirect(url_for('register'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -35,11 +35,17 @@ def completed():
     todos = db_session.query(Todo).filter_by(check=True).all()
     return render_template('/show.html',todos=todos,form=form)
 
-@app.route('/show', methods=['GET'])
+@app.route('/show', methods=['GET', 'POST'])
 def show():
     form = RegistrationForm(request.form)
     todos = db_session.query(Todo).all()
     return render_template("show.html",todos = todos,form=form)
+
+@app.route('/clearCompleted', methods=['GET'])
+def clear_completed():
+    db_session.query(Todo).filter_by(check=True).delete()
+    db_session.commit()
+    return redirect(url_for('show'))
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
