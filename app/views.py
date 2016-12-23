@@ -33,7 +33,8 @@ def flip():
     else:
         todo.check = True
     db_session.commit()
-    return redirect(url_for('show'))
+
+    return redirect(url_for('register'))
 
 @app.route('/active', methods=['GET', 'POST'])
 def active():

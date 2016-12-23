@@ -2,48 +2,45 @@
 
 {% block show %}
 
-<div class = "ui celled table">
-	<table border="1" summary="테이블 관련 요소 목록">
-		<thead>
+<div class = "ui celled padded table">
+	<table border="1" summary="테이블 관련 요소 목록" align="center" width ="100%">
+		<thead align="center">
 			<tr>
-				<th>v</th>
+				<th>check</th>
 				<th>todo_text</th>
 			</tr>	
 		</thead>
-		<tfoot>
+		{%for todo in todos %}
+		<tbody align="center">
 			<tr>
-				<div class = "ui right floated pagination menu">
+				<form method=post action="/register">
+					<td>
+						{#{ form.check(check=todo.check) }} {{ form.todo(todo=todo.todo,value=todo.todo) }#}
+						<input type="checkbox" id="{{todo.id}}" name="Todo" value="{{todo.check}}"
+														  {%if todo.check %}
+														  checked
+														  {% endif %}
+														  onclick = "sendPost('{{ request.url }}', '{{ url_for('flip') }}', {{ todo.id }})"
+														  >
+					</td>
+						<td>
+							<label for="{{todo.id}}">{{todo.todo}}</label>
+						</td>
+				</form>
+			</tr>
+		</tbody>
+		{%endfor%}
+		<tfoot align="center">
+			<tr>
 				<td colspan="2">
 					<a href="{{url_for('show')}}"><i class="calendar icon"></i></a> 
 					<a href="{{url_for('active')}}">i<i class="radio icon"></i></a>
 					<a href="{{url_for('completed')}}"><i class="checkmark icon"></i></a>
 					<a href="{{url_for('clear_completed')}}"><i class="trash icon"></i></a>
 				</td>
-				</div>
 			</tr>
 		</tfoot>
-		{%for todo in todos %}
-		<tr>
-			<div class="large-4 small-4 columns">
-				<ul class="todo-table">
-					<form method=post action="/register">
-						<td>
-							{#{ form.check(check=todo.check) }} {{ form.todo(todo=todo.todo,value=todo.todo) }#}
-							<input type="checkbox" id="{{todo.id}}" name="Todo" value="{{todo.check}}"
-														   {%if todo.check %}
-														   checked
-														   {% endif %}
-														   onclick = "sendPost('{{ request.url }}', '{{ url_for('flip') }}', {{ todo.id }})"
-														   >
-						</td>
-							<td>
-								<label for="{{todo.id}}">{{todo.todo}}</label>
-							</td>
-					</form>
-				</ul>
-			</div>
-		</tr>
-		{%endfor%}
+
 	</table>
 </div>
 
