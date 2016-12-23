@@ -3,25 +3,43 @@
 {% block show %}
 
 <div class = "row">
-	{%for todo in todos %}
-	<tr>
-		<div class="large-4 small-4 columns">
-			<ul class="todo-table">
-				<form method=post action="/register">
-					<td>
-						<input type="checkbox" id="{{todo.id}}" name="Todo" value="{{todo.check}}"
-														  {%if todo.check %}
-														  checked
-														  {% endif %}>
-					</td>
-					<td>
-						<label for="{{todo.id}}">{{todo.todo}}</label>
-					</td>
-				</form>
-			</ul>
-		</div>
-	</tr>
-	{%endfor%}
+	<table border="1" summary="테이블 관련 요소 목록">
+		<thead>
+			<tr>
+				<th>v</th>
+				<th>todo_text</th>
+			</tr>	
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="2">
+					<a href="{{url_for('show')}}">All</a> 
+					<a href="{{url_for('active')}}">Active</a>
+					<a href="{{url_for('completed')}}">Completed</a>
+					<a href="{{url_for('clear_completed')}}">Clear_completed</a>
+				</td>
+			</tr>
+		</tfoot>
+		{%for todo in todos %}
+		<tr>
+			<div class="large-4 small-4 columns">
+				<ul class="todo-table">
+					<form method=post action="/register">
+						<td>
+							<input type="checkbox" id="{{todo.id}}" name="Todo" value="{{todo.check}}"
+														   {%if todo.check %}
+														   checked
+														   {% endif %}>
+						</td>
+						<td>
+							<label for="{{todo.id}}">{{todo.todo}}</label>
+						</td>
+					</form>
+				</ul>
+			</div>
+		</tr>
+		{%endfor%}
+	</table>
 </div>
 
 {% endblock %}
