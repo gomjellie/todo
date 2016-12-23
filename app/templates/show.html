@@ -2,7 +2,7 @@
 
 {% block show %}
 
-<div class = "row">
+<div class = "ui celled table">
 	<table border="1" summary="테이블 관련 요소 목록">
 		<thead>
 			<tr>
@@ -12,12 +12,14 @@
 		</thead>
 		<tfoot>
 			<tr>
+				<div class = "ui right floated pagination menu">
 				<td colspan="2">
-					<a href="{{url_for('show')}}">All</a> 
-					<a href="{{url_for('active')}}">Active</a>
-					<a href="{{url_for('completed')}}">Completed</a>
-					<a href="{{url_for('clear_completed')}}">Clear_completed</a>
+					<a href="{{url_for('show')}}"><i class="calendar icon"></i></a> 
+					<a href="{{url_for('active')}}">i<i class="radio icon"></i></a>
+					<a href="{{url_for('completed')}}"><i class="checkmark icon"></i></a>
+					<a href="{{url_for('clear_completed')}}"><i class="remove icon"></i></a>
 				</td>
+				</div>
 			</tr>
 		</tfoot>
 		{%for todo in todos %}

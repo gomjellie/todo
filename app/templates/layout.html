@@ -26,14 +26,11 @@ var sendPost = function sendPost(cur_url, req_url, todo_id){
 <div class="ui vertical masthead center aligned random segment" style="padding:10em 0em">
 	<div class="ui container">      
 
-		<h1>
-			Write down Todo lists here
+		<h1 class = "ui header">
+			Todos
 		</h1>
 
 		<div class="ui green tiny statistic">
-			<div class="label">
-				Views
-			</div>
 			<div class="value">
 				{% block register %}
 
@@ -44,12 +41,5 @@ var sendPost = function sendPost(cur_url, req_url, todo_id){
 				{% endblock %}
 			</div>
 		</div> 
-		<h2> 
-			<a href="{{url_for('show')}}">All</a> 
-			<a href="{{url_for('active')}}">Active</a>
-			<a href="{{url_for('completed')}}">Completed</a>
-			<a href="{{url_for('clear_completed')}}">Clear_completed</a>
-		</h2>
-
 	</div>
 </div>
