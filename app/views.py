@@ -23,29 +23,23 @@ def register():
     	return redirect(url_for('register'))
     return render_template('register.html', form=form)
 
-@app.route('/active', methods=['GET'])
+@app.route('/active', methods=['GET', 'POST'])
 def active():
+    form = RegistrationForm(request.form)
     todos =db_session.query(Todo).filter_by(check=False).all()
-    return render_template('/active.html',todos=todos)
+    return render_template('/show.html',todos=todos,form=form)
 
 @app.route('/completed', methods=['GET'])
 def completed():
+    form = RegistrationForm(request.form)
     todos = db_session.query(Todo).filter_by(check=True).all()
-    return render_template('/completed.html',todos=todos)
+    return render_template('/show.html',todos=todos,form=form)
 
 @app.route('/show', methods=['GET'])
 def show():
     form = RegistrationForm(request.form)
     todos = db_session.query(Todo).all()
-    return render_template("show.html",
-            title="Show",
-            todos = todos,
-            form=form
-            )
-#    ret = ''
-#    for instance in db_session.query(Todo).order_by(Todo.id):
-#        ret += 'todo: {todo} is_done: {is_done}'.format(todo=instance.todo, is_done=instance.check)
-#    return ret
+    return render_template("show.html",todos = todos,form=form)
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
