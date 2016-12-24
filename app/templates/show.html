@@ -6,8 +6,7 @@
 	<table border="1" summary="테이블 관련 요소 목록" align="center" width ="100%">
 		<thead align="center">
 			<tr>
-				<th>check</th>
-				<th>todo_text</th>
+				<th>todo</th>
 			</tr>	
 		</thead>
 		{%for todo in todos %}
@@ -22,10 +21,7 @@
 														  {% endif %}
 														  onclick = "sendPost('{{ request.url }}', '{{ url_for('flip') }}', {{ todo.id }})"
 														  >
-					</td>
-						<td>
 							<label for="{{todo.id}}">{{todo.todo}}</label>
-						</td>
 				</form>
 			</tr>
 		</tbody>

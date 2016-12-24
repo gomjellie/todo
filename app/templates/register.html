@@ -4,10 +4,7 @@
 {% block register %}
 
 <form method=post action="/register" class = "ui form">
-	<div class="ui checkbox">
-		{{ render_field(form.check) }}
-	</div> {{ render_field(form.todo) }}
-	{#<input type=submit value=Register>#}
+	{{ form.todo(todo=form.todo, placeholder="What needs to be done?", autofocus="True", align="center")}}
 </form>
 
 {% endblock %}
