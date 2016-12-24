@@ -28,27 +28,33 @@ function handleIt(txt) {   // txt == content of form input
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
-		<div class="ui vertical masthead center aligned random segment" style="padding:10em 0em">
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
 
 	</head>
 
 	<body>
-		<div class="ui container">      
+		<div class="ui vertical masthead center aligned random segment" style="padding:10em 0em">
+			<div class="ui container">      
 
-			<h1 class = "ui header">
-				Todos
-			</h1>
+				<section class="todoapp">
+					<header class="header">
+						<h1>
+							Todos
+						</h1>
+					</header>
+				</section>
 
-			<div class="value">
-				{% block register %}
+				<div class="value">
+					{% block register %}
 
-				{% endblock %}
+					{% endblock %}
 
-				{% block show %}
+					{% block show %}
 
-				{% endblock %}
+					{% endblock %}
+				</div>
 			</div>
-		</div>
 		</div>
 	</body>
 </html>
